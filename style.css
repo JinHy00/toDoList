@@ -1,0 +1,53 @@
+.container {
+  background-color: rgb(255, 220, 225);
+  box-sizing: inherit;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  height: 55em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding-top: 20px;
+}
+
+.main-area {
+  border: 2px solid gray;
+  margin: 50px 10px 0 10px;
+}
+
+.input-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input-box {
+  width: 500px;
+  margin-top: 10px;
+}
+
+.taps-menu {
+  display: flex;
+  border-bottom: 2px solid gray;
+  position: relative;
+}
+
+#menu_line {
+  height: 4px;
+  background-color: rgb(226, 89, 89);
+  position: absolute;
+  width: 50px;
+  left: 0;
+  top: 52px;
+  padding: 0;
+}
+
+.taps-menu div {
+  padding: 1em;
+}
+
+.task-taps {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+}
