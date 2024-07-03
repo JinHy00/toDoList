@@ -39,17 +39,17 @@ function render() {
               <div class ="task-done" style="font-size:18px">${taskList[i].userInputTask}</div>
             </div>
             <div>
-              <button onclick ="task_delete('${taskList[i].id}')"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
+              <button onclick ="task_delete('${taskList[i].id}')" class="delete_btn"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
             </div>
           </div>`;
     } else {
       taskDashBoard += `<div class="task-taps">
             <div class="task-box">
-              <div><button onclick="taskComplete('${taskList[i].id}')" class="check_btn"><i class="fa-solid fa-check" style="color: #FFD43B;"></i></button></div>
+              <div><button onclick="taskComplete('${taskList[i].id}')" class="check_btn"><i class="fa-solid fa-check fa-xl" style="color: #FFD43B;"></i></button></div>
               <div style="font-size:18px"> ${taskList[i].userInputTask}</div>
             </div>
             <div>
-              <button onclick="task_delete('${taskList[i].id}')"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
+              <button onclick="task_delete('${taskList[i].id}')"  class="delete_btn"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
             </div>
           </div>`;
     }
