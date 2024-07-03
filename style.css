@@ -76,5 +76,12 @@
 }
 
 .task-done {
+  text-align: left;
   text-decoration: line-through black;
+  border: 2px solid rgb(209, 209, 209);
+  border-radius: 4px;
+  background-color: rgb(209, 209, 209);
+  font-weight: bold;
+  min-width: 30em;
+  box-shadow: 1px 1px gray;
 }

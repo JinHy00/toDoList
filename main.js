@@ -10,7 +10,13 @@ let userInput = document.getElementById("user-input");
 let inputButton = document.getElementById("input_btn");
 let taskList = [];
 
-inputButton.addEventListener("click", addTask); // 할일추가
+inputButton.addEventListener("click", addTask);
+userInput.addEventListener("focus", inputClear);
+
+// input창 clear
+function inputClear() {
+  userInput.value = "";
+}
 
 function addTask() {
   let task = {
@@ -27,23 +33,23 @@ function render() {
   let taskDashBoard = "";
   for (i = 0; i < taskList.length; i++) {
     if (taskList[i].isComplete == true) {
-      taskDashBoard += `<div class="task-taps">
+      taskDashBoard += `<div class="task-taps" >
             <div class= "task-box">
-              <button onclick="taskComplete('${taskList[i].id}')">check</button>
+              <div><button onclick="taskComplete('${taskList[i].id}')"  class="check_btn"><i class="fa-solid fa-rotate-left" style="color: #bababa;"></i></button></div>
               <div class ="task-done" style="font-size:18px">${taskList[i].userInputTask}</div>
             </div>
             <div>
-              <button onclick ="task_delete('${taskList[i].id}')">delete</button>
+              <button onclick ="task_delete('${taskList[i].id}')"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
             </div>
           </div>`;
     } else {
       taskDashBoard += `<div class="task-taps">
             <div class="task-box">
-              <button onclick="taskComplete('${taskList[i].id}')">check</button>
+              <div><button onclick="taskComplete('${taskList[i].id}')" class="check_btn"><i class="fa-solid fa-check" style="color: #FFD43B;"></i></button></div>
               <div style="font-size:18px"> ${taskList[i].userInputTask}</div>
             </div>
             <div>
-              <button onclick="task_delete('${taskList[i].id}')">delete</button>
+              <button onclick="task_delete('${taskList[i].id}')"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
             </div>
           </div>`;
     }
@@ -75,8 +81,6 @@ function task_delete(id) {
   render();
   console.log(taskList);
 }
-
-// render();
 
 function randomIDGenerate() {
   return "_" + Math.random().toString(36).substr(2, 9);
