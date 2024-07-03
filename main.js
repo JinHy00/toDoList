@@ -14,7 +14,7 @@ inputButton.addEventListener("click", addTask); // 할일추가
 
 function addTask() {
   let task = {
-    id: ramdomIDGenerate(),
+    id: randomIDGenerate(),
     userInputTask: userInput.value,
     isComplete: false,
   };
@@ -28,9 +28,9 @@ function render() {
   for (i = 0; i < taskList.length; i++) {
     if (taskList[i].isComplete == true) {
       taskDashBoard += `<div class="task-taps">
-            <div>
+            <div class= "task-box">
               <button onclick="taskComplete('${taskList[i].id}')">check</button>
-              <div class ="task-done">${taskList[i].userInputTask}</div>
+              <div class ="task-done" style="font-size:18px">${taskList[i].userInputTask}</div>
             </div>
             <div>
               <button onclick ="task_delete('${taskList[i].id}')">delete</button>
@@ -38,9 +38,9 @@ function render() {
           </div>`;
     } else {
       taskDashBoard += `<div class="task-taps">
-            <div>
+            <div class="task-box">
               <button onclick="taskComplete('${taskList[i].id}')">check</button>
-              <div>${taskList[i].userInputTask}</div>
+              <div style="font-size:18px"> ${taskList[i].userInputTask}</div>
             </div>
             <div>
               <button onclick="task_delete('${taskList[i].id}')">delete</button>
@@ -78,6 +78,6 @@ function task_delete(id) {
 
 // render();
 
-function ramdomIDGenerate() {
+function randomIDGenerate() {
   return "_" + Math.random().toString(36).substr(2, 9);
 }

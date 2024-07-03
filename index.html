@@ -14,7 +14,16 @@
   </head>
   <body>
     <div class="container">
-      <h1 class = "title">To Do List</h1>
+      <h1 class="title">To Do List</h1>
+      <section class="input-area">
+        <input
+          type="text"
+          class="input-box"
+          id="user-input"
+          placeholder="오늘의 할일을 입력하세요!"
+        />
+        <button id="input_btn" class="plus_button">+</button>
+      </section>
 
       <section class="main-area">
         <div class="taps-menu">
@@ -23,15 +32,7 @@
           <div>not completed</div>
           <div>completed</div>
         </div>
-        <div id="task-board">
-        
-          </div>
-        </div>
-      </section>
-
-      <section class="input-area">
-        <input type="text" class="input-box" id="user-input" />
-        <button id="input_btn" class = "plus_button">+</button>
+        <div id="task-board"></div>
       </section>
     </div>
 
