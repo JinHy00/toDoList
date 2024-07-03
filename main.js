@@ -9,21 +9,40 @@
 let userInput = document.getElementById("user-input");
 let inputButton = document.getElementById("input_btn");
 let taskList = [];
+let tabs = document.querySelectorAll(".tabs-menu div");
+let menuTabs = "all";
+let filterList = [];
+let slideBar = document.getElementById("menu_line");
+let menuLine = document.querySelectorAll("nav div");
 
 inputButton.addEventListener("click", addTask);
 userInput.addEventListener("focus", inputClear);
+menuLine.forEach((menu) =>
+  menu.addEventListener("click", (e) => slideMenuLine(e))
+);
 
 // input창 clear
 function inputClear() {
   userInput.value = "";
 }
 
+for (let i = 1; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", function (event) {
+    filter(event);
+  });
+}
+
 function addTask() {
+  if (userInput.value.trim() === "") {
+    return alert("할 일을 입력해주세요");
+  }
+
   let task = {
     id: randomIDGenerate(),
     userInputTask: userInput.value,
     isComplete: false,
   };
+
   taskList.push(task);
   console.log(taskList);
   render();
@@ -31,25 +50,35 @@ function addTask() {
 
 function render() {
   let taskDashBoard = "";
-  for (i = 0; i < taskList.length; i++) {
-    if (taskList[i].isComplete == true) {
-      taskDashBoard += `<div class="task-taps" >
-            <div class= "task-box">
-              <div><button onclick="taskComplete('${taskList[i].id}')"  class="check_btn"><i class="fa-solid fa-rotate-left" style="color: #bababa;"></i></button></div>
-              <div class ="task-done" style="font-size:18px">${taskList[i].userInputTask}</div>
+  let list = [];
+
+  if (menuTabs === "all") {
+    list = taskList;
+  } else if (menuTabs === "ing") {
+    list = taskList.filter((task) => !task.isComplete);
+  } else if (menuTabs === "done") {
+    list = taskList.filter((task) => task.isComplete);
+  }
+
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].isComplete) {
+      taskDashBoard += `<div class="task-taps">
+            <div class="task-box">
+              <div><button onclick="taskComplete('${list[i].id}')" class="check_btn"><i class="fa-solid fa-rotate-left" style="color: #bababa;"></i></button></div>
+              <div class="task-done" style="font-size:18px">${list[i].userInputTask}</div>
             </div>
             <div>
-              <button onclick ="task_delete('${taskList[i].id}')" class="delete_btn"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
+              <button onclick="task_delete('${list[i].id}')" class="delete_btn"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
             </div>
           </div>`;
     } else {
       taskDashBoard += `<div class="task-taps">
             <div class="task-box">
-              <div><button onclick="taskComplete('${taskList[i].id}')" class="check_btn"><i class="fa-solid fa-check fa-xl" style="color: #FFD43B;"></i></button></div>
-              <div style="font-size:18px"> ${taskList[i].userInputTask}</div>
+              <div><button onclick="taskComplete('${list[i].id}')" class="check_btn"><i class="fa-solid fa-check fa-xl" style="color: #FFD43B;"></i></button></div>
+              <div class="task-ing" style="font-size:18px">${list[i].userInputTask}</div>
             </div>
             <div>
-              <button onclick="task_delete('${taskList[i].id}')"  class="delete_btn"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
+              <button onclick="task_delete('${list[i].id}')" class="delete_btn"><i class="fa-solid fa-trash-can" style="color: #416fbe;"></i></button>
             </div>
           </div>`;
     }
@@ -61,7 +90,7 @@ function render() {
 function taskComplete(id) {
   console.log("id", id);
   for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].id == id) {
+    if (taskList[i].id === id) {
       taskList[i].isComplete = !taskList[i].isComplete;
       break;
     }
@@ -73,13 +102,26 @@ function taskComplete(id) {
 function task_delete(id) {
   console.log("삭제", id);
   for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].id == id) {
+    if (taskList[i].id === id) {
       taskList.splice(i, 1);
       break;
     }
   }
   render();
   console.log(taskList);
+}
+
+function filter(event) {
+  menuTabs = event.target.id;
+  render();
+}
+
+// 메뉴바 슬라이드
+function slideMenuLine(e) {
+  slideBar.style.left = e.currentTarget.offsetLeft + "px";
+  slideBar.style.width = e.currentTarget.offsetWidth + "px";
+  slideBar.style.top =
+    e.currentTarget.offsetTop + e.currentTarget.offsetHeight + "px";
 }
 
 function randomIDGenerate() {

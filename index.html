@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -33,12 +37,12 @@
       </section>
 
       <section class="main-area">
-        <div class="taps-menu">
-          <div id="menu_line"></div>
-          <div>all</div>
-          <div>not completed</div>
-          <div>completed</div>
-        </div>
+        <nav class="tabs-menu">
+          <p id="menu_line"></p>
+          <div id="all">List</div>
+          <div id="ing">진행중</div>
+          <div id="done">완료</div>
+        </nav>
         <div id="task-board"></div>
       </section>
     </div>
