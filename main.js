@@ -10,11 +10,15 @@ let userInput = document.getElementById("user-input");
 let inputButton = document.getElementById("input_btn");
 let taskList = [];
 
-inputButton.addEventListener("click", addTask);
+inputButton.addEventListener("click", addTask); // 할일추가
 
 function addTask() {
-  let userInputTask = userInput.value;
-  taskList.push(userInputTask);
+  let task = {
+    id: ramdomIDGenerate(),
+    userInputTask: userInput.value,
+    isComplete: false,
+  };
+  taskList.push(task);
   console.log(taskList);
   render();
 }
@@ -22,16 +26,58 @@ function addTask() {
 function render() {
   let taskDashBoard = "";
   for (i = 0; i < taskList.length; i++) {
-    taskDashBoard += `<div class="task-taps">
+    if (taskList[i].isComplete == true) {
+      taskDashBoard += `<div class="task-taps">
             <div>
-              <button>check</button>
-              ${taskList[i]}
+              <button onclick="taskComplete('${taskList[i].id}')">check</button>
+              <div class ="task-done">${taskList[i].userInputTask}</div>
             </div>
             <div>
-              <button>delete</button>
+              <button onclick ="task_delete('${taskList[i].id}')">delete</button>
             </div>
           </div>`;
+    } else {
+      taskDashBoard += `<div class="task-taps">
+            <div>
+              <button onclick="taskComplete('${taskList[i].id}')">check</button>
+              <div>${taskList[i].userInputTask}</div>
+            </div>
+            <div>
+              <button onclick="task_delete('${taskList[i].id}')">delete</button>
+            </div>
+          </div>`;
+    }
   }
 
   document.getElementById("task-board").innerHTML = taskDashBoard;
+}
+
+function taskComplete(id) {
+  console.log("id", id);
+  for (let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == id) {
+      taskList[i].isComplete = !taskList[i].isComplete;
+      break;
+    }
+  }
+  render();
+  console.log(taskList);
+}
+
+function task_delete(id) {
+  console.log("삭제", id);
+  for (let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == id) {
+      taskList.splice(i, 1);
+      break;
+    }
+  }
+  render();
+  console.log(taskList);
+}
+
+// render();
+
+function ramdomIDGenerate() {
+  return "_" + Math.random().toString(36).substr(2, 9);
 }
