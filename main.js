@@ -16,6 +16,19 @@ let slideBar = document.getElementById("menu_line");
 let menuLine = document.querySelectorAll("nav div");
 
 inputButton.addEventListener("click", addTask);
+userInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    let task = {
+      id: randomIDGenerate(),
+      userInputTask: userInput.value,
+      isComplete: false,
+    };
+
+    taskList.push(task);
+    console.log(taskList);
+    render();
+  }
+});
 userInput.addEventListener("focus", inputClear);
 menuLine.forEach((menu) =>
   menu.addEventListener("click", (e) => slideMenuLine(e))

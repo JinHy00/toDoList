@@ -46,7 +46,6 @@
 
 .tabs-menu {
   display: flex;
-
   border-bottom: 1px solid gray;
   position: relative;
 }
@@ -54,16 +53,17 @@
 #menu_line {
   height: 4px;
   background-color: rgb(226, 89, 89);
+  border-radius: 2px;
   position: absolute;
-  width: 50px;
+  width: 56px;
   left: 0;
-  top: 3.3em;
+  top: 3.5em;
   padding: 0;
 }
 
 .tabs-menu div {
   padding: 1em;
-
+  margin-bottom: 3px;
   cursor: pointer;
 }
 
