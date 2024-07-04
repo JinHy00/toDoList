@@ -16,8 +16,9 @@
 }
 
 .main-area {
-  border: 2px solid gray;
-  border-radius: 3px;
+  border: solid gray;
+  border: top 4px left 4px bottom 2px right 4px;
+  border-radius: 10px;
   margin: 80px 10px 0 10px;
 }
 
@@ -83,7 +84,7 @@
   text-align: left;
   text-decoration: line-through black;
   border: 1px solid rgb(235, 232, 232);
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: rgb(235, 232, 232);
   font-weight: bold;
   min-width: 32em;
@@ -91,8 +92,8 @@
 
 .task-ing {
   text-align: left;
-  border: 1px solid rgb(209, 209, 209);
-  border-radius: 8px;
+  border: 1.5px solid rgb(185, 136, 80);
+  border-radius: 10px;
   font-weight: bold;
   min-width: 32em;
 }

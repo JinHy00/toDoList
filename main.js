@@ -11,24 +11,17 @@ let inputButton = document.getElementById("input_btn");
 let taskList = [];
 let tabs = document.querySelectorAll(".tabs-menu div");
 let menuTabs = "all";
-let filterList = [];
 let slideBar = document.getElementById("menu_line");
 let menuLine = document.querySelectorAll("nav div");
 
 inputButton.addEventListener("click", addTask);
 userInput.addEventListener("keypress", function (event) {
+  // 엔터키로 입력
   if (event.key === "Enter") {
-    let task = {
-      id: randomIDGenerate(),
-      userInputTask: userInput.value,
-      isComplete: false,
-    };
-
-    taskList.push(task);
-    console.log(taskList);
-    render();
+    addTask();
   }
 });
+
 userInput.addEventListener("focus", inputClear);
 menuLine.forEach((menu) =>
   menu.addEventListener("click", (e) => slideMenuLine(e))
@@ -39,7 +32,7 @@ function inputClear() {
   userInput.value = "";
 }
 
-for (let i = 1; i < tabs.length; i++) {
+for (let i = 0; i < tabs.length; i++) {
   tabs[i].addEventListener("click", function (event) {
     filter(event);
   });
@@ -47,7 +40,9 @@ for (let i = 1; i < tabs.length; i++) {
 
 function addTask() {
   if (userInput.value.trim() === "") {
-    return alert("할 일을 입력해주세요");
+    // 빈칸일 때 알람창
+    showAlert();
+    return;
   }
 
   let task = {
@@ -59,6 +54,13 @@ function addTask() {
   taskList.push(task);
   console.log(taskList);
   render();
+}
+
+function showAlert() {
+  Swal.fire({
+    title: "할 일을 입력해주세요",
+    icon: "warning",
+  });
 }
 
 function render() {
