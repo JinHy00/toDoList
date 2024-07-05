@@ -19,6 +19,7 @@ userInput.addEventListener("keypress", function (event) {
   // 엔터키로 입력
   if (event.key === "Enter") {
     addTask();
+    userInput.value = "";
   }
 });
 
